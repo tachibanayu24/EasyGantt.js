@@ -6,11 +6,11 @@ let startDay = {
 }
 
 // 始業時間と就業時間を入力してください(30分単位で入力してください)
-let openingTime = 900;
-let closingTime = 1730;
+let openingTime = 1000;
+let closingTime = 1900;
 
 // 始業時間と就業時間から、30分区切りでhh:mmというフォーマットに変換する
-const createTimeScale = (open, close) => {
+const setTimeScale = (open, close) => {
   openMin = convertTimesToMins(open);
   closeMin = convertTimesToMins(close);
   workingMin = closeMin - openMin;
@@ -26,16 +26,25 @@ const createTimeScale = (open, close) => {
   }
 }
 
-const scaleDOM = (i) => {
+// #easygantt要素の幅を取得して、scaleを均等に分割する
+const setTimeScaleWidth = () => {
+  clientWidth = document.getElementById('easygantt').clientWidth;
+  let singleTimeScaleWidth =  clientWidth / (this.scaleDiv + 1) - 9;
+  return singleTimeScaleWidth;
+}
+
+// setTimeScaleWidthで取得したひとつあたりのtimeScaleの値に応じたwidthで、時間軸を描画する
+const scaleDOM = (i, width) => {
   let scale = document.querySelectorAll(".scale");
   scale[i].insertAdjacentHTML('beforeend', '<div class="hr">')
   for(let j=0; j<timeScale.length; j++) {
     scale[i].insertAdjacentHTML('beforeend',`
-      <section>${timeScale[j]}</section></div>
+      <section style="width: ${width}px;">${timeScale[j]}</section></div>
     `);
   }
 }
 
+// startDayの値をmm/dd(w)のフォーマットにして描画する
 const dateDOM = (i) => {
   let taskDay = new Date(startDay.year, startDay.month - 1, startDay.day + i);
   let m = taskDay.getMonth() + 1;
@@ -45,6 +54,7 @@ const dateDOM = (i) => {
   document.getElementById("date" + [i]).innerText = `${m}/${d}(${weekNames[w%7]})`;
 }
 
+// hhmmのフォーマットの時間を分数にして返す
 const convertTimesToMins = (time) => {
   let hour = parseInt(String(time).slice(0, -2));
   let min = parseInt(String(time).slice(-2));
@@ -52,15 +62,22 @@ const convertTimesToMins = (time) => {
   return sumMins;
 }
 
-const bubbleDOM = (i, j, start, duration, element) => {
+// tasks.jsの配列をもとに、チャートにバブルを描画する
+const bubbleDOM = (i, j, start, duration, element, width) => {
+  // 1分あたりのバブルの長さ[px]
+  let widthAboutMin = (width+1)/30;
+  // 始業からタスク開始までの分数
+  let startTaskMin = start - convertTimesToMins(openingTime);
   element.insertAdjacentHTML('beforeend', `
   <li><div class="${task[i][j].category}">
-    <span class="bubble" style="margin-left: ${(start - (openingTime/100) * 60) * 2}px; width: ${duration * 2}px;"></span>
+    <span class="bubble" style="margin-left: ${startTaskMin * widthAboutMin}px;
+      width: ${duration * widthAboutMin}px;"></span>
       ${bubbleData(i, j)}
   </div></li>
 `);
 }
 
+// task.jsの配列のデータを、「hh:mm-hh:mm タスクの説明」のフォーマットにして返す
 const bubbleData = (i, j) => {
   if(task[i][j].category !== "milestone") {
     data = `<span class="time">
@@ -77,17 +94,15 @@ const bubbleData = (i, j) => {
 }
 
 window.onload = () => {
-  createTimeScale(openingTime, closingTime);
-
   for(let i=0; i < Object.keys(task).length; i++) {
-    let contentObj = document.getElementById("chart-wrapper");
+    let contentObj = document.getElementById("easygantt");
     let chartElement = document.createElement('div');
     chartElement.className = 'chart';
     contentObj.appendChild(chartElement);
     let chartArea = document.querySelectorAll(".chart");
       chartArea[i].innerHTML = `
       <span id="date${i}"></span>
-      <div class="easy-gantt">
+      <div class="daily-area">
         <div class="scale"></div>
         <ul class="data" id="task${i}"></ul>
       </div>
@@ -97,15 +112,18 @@ window.onload = () => {
   let startTimeToMins = [], endTimeToMins = [], durationTimes = [];
   for(let i=0; i < Object.keys(task).length; i++) {
     if(task[i][0]) {
+      setTimeScale(openingTime, closingTime);
+      timeScaleWidth = setTimeScaleWidth();
+      scaleDOM(i, timeScaleWidth);
       dateDOM(i);
-      scaleDOM(i);
       let createBubble = document.getElementById(`task${i}`);
       startTimeToMins[i] = [], endTimeToMins[i] = [], durationTimes[i] = [];
       for(let j=0; j < Object.keys(task[i]).length; j++) {
         bubbleDOM(i, j,
           convertTimesToMins(task[i][j].startTime),
           (convertTimesToMins(task[i][j].endTime) - convertTimesToMins(task[i][j].startTime)),
-          createBubble
+          createBubble,
+          timeScaleWidth
         );
       }
     }

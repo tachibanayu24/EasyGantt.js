@@ -56,8 +56,8 @@ let task = [
   // 3日目
   [
     {
-      name: "終日品川出張",
-      startTime: 900,
+      name: "品川出張",
+      startTime: 1100,
       endTime: 1730,
       category: "other"
     },

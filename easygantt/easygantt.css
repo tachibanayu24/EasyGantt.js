@@ -1,44 +1,41 @@
-#chart-wrapper {
+#easygantt {
   font-family: 'hiragino kaku gothic pro', meiryo;
   background-color: #333;
   border-radius: 10px;
   padding: 10px;
 }
 
-span[id *= "date"] {
+#easygantt span[id *= "date"] {
   font-size: 14px;
   font-weight: 600;
   color: azure;
 }
 
-.easy-gantt {
+#easygantt .daily-area {
   border-top: 0.1px solid #333;
   position: relative;
 }
 
-.hr {
+#easygantt .hr {
   border-top: 1px solid rgba(250,250,250,0.5);
 }
 /* バブルの色 */
-.easy-gantt .dev span.bubble, .nav.dev { background-color: #2b8fef; }
-.easy-gantt .lecture span.bubble, .nav.lecture { background-color: #13d604; }
-.easy-gantt .meeting span.bubble, .nav.meeting { background-color: #ffe74d; }
-.easy-gantt .event span.bubble, .nav.event { background-color: #8470ff; }
-.easy-gantt .absence span.bubble, .nav.absence { background-color: #ffc0cb; }
-.easy-gantt .other span.bubble, .nav.other { background-color: #a9a9a9; }
+#easygantt .dev span.bubble, .nav.dev { background-color: #2b8fef; }
+#easygantt .lecture span.bubble, .nav.lecture { background-color: #13d604; }
+#easygantt .meeting span.bubble, .nav.meeting { background-color: #ffe74d; }
+#easygantt .event span.bubble, .nav.event { background-color: #8470ff; }
+#easygantt .absence span.bubble, .nav.absence { background-color: #ffc0cb; }
+#easygantt .other span.bubble, .nav.other { background-color: #a9a9a9; }
 
-.easy-gantt .scale {
+#easygantt .scale {
   height: 100%;
+  width: 100%;
   position: absolute;
-  top: 0;
-  left: 0;
-  float: left;
 }
 
-.easy-gantt .scale section {
+#easygantt .scale section {
   float: left;
   /* border-leftの線の太さを考慮して60 - 1する */
-  width: 59px;
   text-align: center;
   background-color: #333;
   color: #979796;
@@ -48,7 +45,7 @@ span[id *= "date"] {
   height: 100%
 }
 
-.easy-gantt .data {
+#easygantt .data {
   font-size: 14px;
   padding: 0;
   margin: 30px 0 0 0;
@@ -57,7 +54,7 @@ span[id *= "date"] {
   color: rgba(250,250,250,0.8);
 }
 
-.easy-gantt .data li div:not(.milestone) {
+#easygantt .data li div:not(.milestone) {
   margin: 0 0 3px 0;
   line-height: 20px;
   height: 20px;
@@ -67,11 +64,11 @@ span[id *= "date"] {
   white-space: nowrap;
 }
 
-.easy-gantt .data li .time {
+#easygantt .data li .time {
   color: #b5b5b5;
 }
 
-.easy-gantt .data li .label {
+#easygantt .data li .label {
   font-weight: lighter;
   padding-left: 5px;
   line-height: 10px;
@@ -79,7 +76,7 @@ span[id *= "date"] {
   white-space: nowrap
 }
 
-.easy-gantt .data li div:not(.milestone) .bubble {
+#easygantt .data li div:not(.milestone) .bubble {
   height: 10px;
   display: block;
   float: left;
@@ -91,7 +88,7 @@ span[id *= "date"] {
 }
 
 /* マイルストンの三角形 */
-.easy-gantt .milestone .bubble {
+#easygantt .milestone .bubble {
   height: 30px;
   bottom: 20px;
   display: inline-block;
@@ -104,7 +101,7 @@ span[id *= "date"] {
 }
 
 /* マイルストンの文字は三角にかぶらせる */
-.easy-gantt .data li .milestone-span {
+#easygantt .data li .milestone-span {
   text-align: center;
   width: 100%;
   position: absolute;
@@ -114,7 +111,7 @@ span[id *= "date"] {
   transform: translate(-53.3%,30%);
 }
 
-.easy-gantt li:hover {
+#easygantt li:hover {
   filter:alpha(opacity=80);
   -moz-opacity: 0.8;
     opacity: 0.8;
