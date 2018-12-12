@@ -6,6 +6,10 @@
 サーバを必要としないためブラウザのみで動作し、bootstrapやjQueryといったライブラリと依存関係がありません。
 インターネット無しで動作します。
 
+    <div id="chart-wrapper">
+      <div class="chart"></div>
+    </div>
+
 ![画面](asset/images/screen.png "gamen")
 
 簡単な入力だけで使用できます。

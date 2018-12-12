@@ -2,29 +2,37 @@
 let startDay = {
   year: 2018,
   month: 12,
-  day: 7
+  day: 17
 }
 
-// チャートの時間軸に表示したい時間を入力してください
-let timeScale = ["9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00",
-                  "13:30", "14:00", "14:30", "15:00","15:30", "16:00", "16:30", "17:00", "17:30"];
+// 始業時間と就業時間を入力してください(30分単位で入力してください)
+let openingTime = 900;
+let closingTime = 1730;
 
-// 休み時間を入力してください
-let breakScale = ["12:00", "12:30"] // 12:00 - 13:00の場合
+// 始業時間と就業時間から、30分区切りでhh:mmというフォーマットに変換する
+const createTimeScale = (open, close) => {
+  openMin = convertTimesToMins(open);
+  closeMin = convertTimesToMins(close);
+  workingMin = closeMin - openMin;
+  timeScale = [];
+  scaleDiv =  workingMin / 30;
+  for(let i=0; i <= scaleDiv; i++) {
+    timeScale[i] = String((openMin + (i * 30))/60);
+    if(timeScale[i].slice(-2) === ".5") {
+      timeScale[i] = timeScale[i].replace(".5", ":30");
+    } else {
+      timeScale[i] = timeScale[i] + ":00";
+    }
+  }
+}
 
 const scaleDOM = (i) => {
   let scale = document.querySelectorAll(".scale");
   scale[i].insertAdjacentHTML('beforeend', '<div class="hr">')
   for(let j=0; j<timeScale.length; j++) {
-    if(breakScale.indexOf(timeScale[j]) === -1) {
-      scale[i].insertAdjacentHTML('beforeend',`
-        <section>${timeScale[j]}</section></div>
-      `);
-    } else {
-      scale[i].insertAdjacentHTML('beforeend',`
-        <section class="break-time">${timeScale[j]}</section></div>
-      `);
-    }
+    scale[i].insertAdjacentHTML('beforeend',`
+      <section>${timeScale[j]}</section></div>
+    `);
   }
 }
 
@@ -47,7 +55,7 @@ const convertTimesToMins = (time) => {
 const bubbleDOM = (i, j, start, duration, element) => {
   element.insertAdjacentHTML('beforeend', `
   <li><div class="${task[i][j].category}">
-    <span class="bubble" style="margin-left: ${(start - 540) * 3}px; width: ${duration * 3}px;"></span>
+    <span class="bubble" style="margin-left: ${(start - (openingTime/100) * 60) * 2}px; width: ${duration * 2}px;"></span>
       ${bubbleData(i, j)}
   </div></li>
 `);
@@ -69,6 +77,23 @@ const bubbleData = (i, j) => {
 }
 
 window.onload = () => {
+  createTimeScale(openingTime, closingTime);
+
+  for(let i=0; i < Object.keys(task).length; i++) {
+    let contentObj = document.getElementById("chart-wrapper");
+    let chartElement = document.createElement('div');
+    chartElement.className = 'chart';
+    contentObj.appendChild(chartElement);
+    let chartArea = document.querySelectorAll(".chart");
+      chartArea[i].innerHTML = `
+      <span id="date${i}"></span>
+      <div class="easy-gantt">
+        <div class="scale"></div>
+        <ul class="data" id="task${i}"></ul>
+      </div>
+      `;
+  }
+
   let startTimeToMins = [], endTimeToMins = [], durationTimes = [];
   for(let i=0; i < Object.keys(task).length; i++) {
     if(task[i][0]) {
