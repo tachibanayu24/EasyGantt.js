@@ -2,14 +2,18 @@
 
 ## What's EasyGantt
 
-カラフルなバブルで近日中の予定やマイルストンを簡単に可視化できます。
+カラフルなバブルで近日中の予定やマイルストンを可視化できます。
 
 サーバを必要としないためブラウザのみで動作し、bootstrapやjQueryといったライブラリと依存関係がありません。インターネットのない環境でも動作します。
 
 分単位での予定の可視化にフォーカスしているため、短いスパンでの予定管理に向いています。
 
+依存関係を表示する機能などはなく、予定のみシンプルに可視化します。
+
+コードは[こちら](https://github.com/tachibanayu24/EasyGantt.js)。
+
 ![画面](readme/example.png "gamen")
-(demoページ)[https://tachibanayu24.github.io/EasyGantt.js/example.html]
+[demoページ](https://tachibanayu24.github.io/EasyGantt.js/example.html){:target="_blank"}
 
 ## How To Use
 
