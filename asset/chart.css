@@ -1,0 +1,250 @@
+/* 初期化 */
+* { margin: 0; padding: 0; }
+
+@import url(https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c);
+
+html {
+  font-family: "M PLUS Rounded 1c", 'hiragino kaku gothic pro', meiryo;
+}
+
+#content {
+  background-color: #333333;
+  padding: 5px;
+  margin-top: 70px;
+}
+
+.graph_container{
+  display: block;
+  width:100%;
+}
+
+span[id *= "date"] {
+  font-size: 24px;
+  font-weight: 600;
+  color: azure;
+}
+
+.timesheet {
+  width: 97%;
+  margin-left: 50px;
+  right: 0px;
+  border-top: 0.1px solid #333333f6;
+  position: relative;
+}
+
+.hr {
+  border-top: 1px solid rgba(250,250,250,0.5);
+}
+/* バブルの色 */
+.timesheet.color-scheme-default .dev span.bubble, .nav.dev { background-color: #2b8fef; }
+.timesheet.color-scheme-default .lecture span.bubble, .nav.lecture { background-color: #13d604; }
+.timesheet.color-scheme-default .meeting span.bubble, .nav.meeting { background-color: #ffe74d; }
+.timesheet.color-scheme-default .event span.bubble, .nav.event { background-color: #8470ff; }
+.timesheet.color-scheme-default .absence span.bubble, .nav.absence { background-color: #ffc0cb; }
+.timesheet.color-scheme-default .other span.bubble, .nav.other { background-color: #a9a9a9; }
+
+.timesheet .scale {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  float: left;
+}
+
+.timesheet .scale section:not(.break-time) {
+  float: left;
+  /* border-leftの線の太さを考慮して90 - 1する */
+  width: 89px;
+  text-align: center;
+  background-color: #333;
+  color: #979796;
+  font-size: 24px;
+  font-weight: lighter;
+  border-left: 1px dashed rgba(250,250,250,0.2);
+  height: 100%
+}
+
+/* 昼休みゾーン */
+.break-time {
+  background-image: url(images/tori.png);
+  background-size: 100px;
+  background-attachment: fixed;
+  background-position: 5% 10%;
+  float: left;
+  /* border-leftの線の太さを考慮して90 - 1する */
+  width: 89px;
+  text-align: center;
+  color: #979796;
+  font-size: 24px;
+  font-weight: lighter;
+  border-left: 1px dashed rgba(250,250,250,0.2);
+  height: 100%
+}
+
+/* チャートの開始位置がずれたらここでpaddingで調整する */
+.timesheet .data {
+  padding: 0;
+  margin: 50px 0 0 0;
+  text-align: left;
+  list-style-type: none;
+  color: rgba(250,250,250,0.8);
+  font-size: 20px;
+}
+
+.timesheet .data li div:not(.milestone) {
+  margin: 0 0 3px 0;
+  line-height: 31px;
+  height: 50px;
+  display: block;
+  clear: both;
+  position: relative;
+  white-space: nowrap;
+}
+
+.timesheet .data li .time {
+  color: #b5b5b5;
+  font-size: 22px
+}
+
+.timesheet .data li .label {
+  font-weight: lighter;
+  font-size: 26px;
+  padding-left: 5px;
+  line-height: 30px;
+  color: #979796;
+  white-space: nowrap
+}
+
+.timesheet .data li div:not(.milestone) .bubble {
+  width: 24px;
+  height: 25px;
+  display: block;
+  float: left;
+  position: relative;
+  top: 7px;
+  border-radius: 4px;
+  margin: 0 10px 0 0;
+  opacity: 0.7;
+}
+
+.timesheet .data li .bubble-span {
+  font-size: 26px;
+}
+
+/* マイルストンの三角形 */
+.timesheet .milestone .bubble {
+  height: 45px;
+  bottom: 30px;
+  display: inline-block;
+  border-style: solid;
+  border-width: 0 30px 45px 30px;
+  left: -29px;
+  border-color: transparent transparent #fc3232 transparent;
+  position: relative;
+  opacity: 0.7;
+}
+
+/* マイルストンの文字は三角にかぶらせる */
+.timesheet .data li .milestone-span {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  font-size: 22px;
+  font-weight: 500;
+  -ms-transform: translate(-53.1%,0%);
+  -webkit-transform: translate(-53.1%,0%);
+  transform: translate(-53.1%,0%);
+  -webkit-filter: drop-shadow(2px 2px 1px rgba(255,255,255,0.5));
+  filter:drop-shadow(2px 2px 1px rgba(255,255,255,0.5));
+}
+
+.timesheet li:hover {
+  filter:alpha(opacity=80);
+    -moz-opacity: 0.8;
+    opacity: 0.8;
+}
+
+/* START: ナビゲーションバー */
+.header {
+  position: fixed;
+  width: 100%;
+  background-color: red;
+  z-index: 1;
+}
+
+.title {
+  color: #555;
+  margin: 10px 0;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.globalNav {
+  list-style: none;
+  overflow: hidden;
+  background-color: #fffcfc;
+}
+
+.globalNav li {
+  float: right;
+}
+
+.nav-left {
+  float: left;
+  margin: 5px 0 0 10px;
+}
+
+.nav-tori {
+  height: 35px;
+  margin: 10px -5px 0 0;
+}
+
+.nav {
+  opacity: 0.8;
+}
+
+.nav:hover {
+  opacity: 1;
+}
+
+.link.nav, .link {
+  margin: 0 30px;
+  color: #555;
+  font-weight: 600;
+}
+
+.nav.link { background-color: #eee; }
+
+.nav, .link a {
+  text-decoration: none;
+}
+
+.nav.milestone {
+  margin: 10px 30px 10px 30px;
+  border-style: solid;
+  border-width: 0 23px 35px 23px;
+  border-color: transparent transparent #fc3232 transparent;
+  position: relative;
+}
+
+.nav.milestone span {
+  position: absolute;
+  font-weight: 700;
+  top: 50%;
+  left: 50%;
+  width: 70px;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,15%);
+}
+
+.nav:not(.milestone) {
+  display: inline-block;
+  text-align: center;
+  padding: 5px;
+  margin: 10 5px;
+  width: 70px;
+  height: 25px;
+  border-radius: 4px;
+  font-weight: 700;
+}
