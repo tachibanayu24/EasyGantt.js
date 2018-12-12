@@ -6,8 +6,8 @@ let startDay = {
 }
 
 // 始業時間と就業時間を入力してください(30分単位で入力してください)
-let openingTime = 1000;
-let closingTime = 1900;
+let openingTime = 900;
+let closingTime = 1730;
 
 // 始業時間と就業時間から、30分区切りでhh:mmというフォーマットに変換する
 const setTimeScale = (open, close) => {

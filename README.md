@@ -1,36 +1,42 @@
-# PMK Gantt Chart
+# EasyGantt
 
-## How to Use
+## What's EasyGantt
 
-カラフルなバブルで近日中の予定やマイルストンを可視化します。
+カラフルなバブルで近日中の予定やマイルストンを簡単に可視化できます。
 
-サーバを必要としないためブラウザのみで動作し、bootstrapやjQueryといったライブラリと依存関係がありません。インターネット無しで動作します。
+サーバを必要としないためブラウザのみで動作し、bootstrapやjQueryといったライブラリと依存関係がありません。インターネットのない環境でも動作します。
 
-分単位での予定の可視化にフォーカスしているため、短いスパンでの予定可視化・管理に向いています。
+分単位での予定の可視化にフォーカスしているため、短いスパンでの予定管理に向いています。
 
 ![画面](readme/example.png "gamen")
+(demoページ)[https://tachibanayu24.github.io/EasyGantt.js/example.html]
 
+## How To Use
 
-まずは、`/chart.js`に、何日からチャートを表示するのか、休み時間はいつなのか、時間の軸には何を表示するのかを記入してください。
+1. easugantt.jsの編集
 
+`easygantt/easugantt.js`に、次の値を入力してください。
+
+* 何日から開始するか
+* 何時から何時を表示するか
+
+サンプル画像のようにする場合は、次の通りになります。
 ```javascript
-// 2018/12/7から開始する場合
+// 開始する日付を入力してください
 let startDay = {
   year: 2018,
   month: 12,
-  day: 7
+  day: 17
 }
 
-// 画像のようなスケールでチャートを作成する場合
-let timeScale = ["9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00",
-                  "13:30", "14:00", "14:30", "15:00","15:30", "16:00", "16:30", "17:00", "17:30"];
-
-// 12:00 - 13:00が休み時間の場合
-let breakScale = ["12:00", "12:30"]
+// 始業時間と就業時間を入力してください(30分単位で入力してください)
+let openingTime = 900;
+let closingTime = 1730;
 ```
 
-次に、`schedules.js`の配列に、予定するタスクを記入してください。
-何もタスクがない日は、空の配列のままでOKです。
+次に、`easygantt/tasks.js`の配列に、予定するタスクを記入してください。
+
+何もタスクがない日は、空の配列としてください。
 
 ```javascript
 let task = [
@@ -111,39 +117,18 @@ milestoneは特別な`category`です。
 
 ## Get Start
 
-1. ダウンロード&ファイル作成
+cloneして、JSとCSSを読み込み、任意の場所にHTMLタグを挿入してください。
 
 ```
-$ git clone https://github.com/tachibanayu24/SimpleGantt.git
-
-$ touch schedules.js
+$ git clone https://github.com/tachibanayu24/EasyGantt.js.git
 ```
 
-2. カスタマイズ
+```html
+<link rel="stylesheet" href="easygantt/easygantt.css">
+<script type="text/javascript" src="easygantt/easygantt.js"></script>
+<script type="text/javascript" src="easygantt/tasks.js"></script>
 
-- [x] `chart.js`
+~~~~~~
 
-コメントされている部分を変種
-
-- [x] `schedules.js`
-
-ファイル作成
-
-`$ touch schedules.js`
-
-task配列を書く
-
-- [x] `chart.css` (お好みで)
-
-## version
-
-v1 => むきPで使える程度
-
-v2 => 他の人に使ってもらえる程度
-
-v3 => さらなる機能拡張
-
-## ToDo
-
-- [ ] 時間軸変えたらバブルの位置ずれるのなんとかする
-- [ ] GitHub上では最小限のパーツだけ公開する。js読み込んで<div id="content"> だけ入れればそこにチャート出現。みたいな。
+<div id="easygantt"></div>
+```
