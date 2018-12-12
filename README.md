@@ -10,7 +10,7 @@
       <div class="chart"></div>
     </div>
 
-![画面](asset/images/screen.png "gamen")
+![画面](readme/example.png "gamen")
 
 簡単な入力だけで使用できます。
 
