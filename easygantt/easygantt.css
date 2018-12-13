@@ -54,10 +54,10 @@
   color: rgba(250,250,250,0.8);
 }
 
-#easygantt .data li div:not(.milestone) {
+#easygantt .data li {
   margin: 0 0 3px 0;
   line-height: 20px;
-  height: 20px;
+  height: 25px;
   display: block;
   clear: both;
   position: relative;
@@ -76,7 +76,7 @@
   white-space: nowrap
 }
 
-#easygantt .data li div:not(.milestone) .bubble {
+#easygantt div:not(.milestone) .bubble {
   height: 10px;
   display: block;
   float: left;
@@ -87,28 +87,13 @@
   opacity: 0.7;
 }
 
-/* マイルストンの三角形 */
 #easygantt .milestone .bubble {
-  height: 30px;
-  bottom: 20px;
-  display: inline-block;
   border-style: solid;
-  border-width: 0 20px 35px 20px;
-  left: -20px;
+  border-width: 0 15px 22px 15px;
   border-color: transparent transparent #fc3232 transparent;
-  position: relative;
   opacity: 0.7;
-}
-
-/* マイルストンの文字は三角にかぶらせる */
-#easygantt .data li .milestone-span {
-  text-align: center;
-  width: 100%;
-  position: absolute;
-  font-weight: 900;
-  -ms-transform: translate(-53.3%,30%);
-  -webkit-transform: translate(-53.3%,30%);
-  transform: translate(-53.3%,30%);
+  transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
 }
 
 #easygantt li:hover {

@@ -1,8 +1,6 @@
-# EasyGantt
+## What's EasyGantt.js
 
-## What's EasyGantt
-
-カラフルなバブルで近日中の予定やマイルストンを可視化できます。
+カラフルなバブルで近日中の予定やマイルストンを可視化できるツールです。
 
 サーバを必要としないためブラウザのみで動作し、bootstrapやjQueryといったライブラリと依存関係がありません。インターネットのない環境でも動作します。
 
@@ -10,14 +8,14 @@
 
 依存関係を表示する機能などはなく、予定のみシンプルに可視化します。
 
-コードは[こちら](https://github.com/tachibanayu24/EasyGantt.js)。
+コードは[こちら](https://github.com/tachibanayu24/EasyGantt.js){:target="_blank"}。
 
 ![画面](readme/example.png "gamen")
 [demoページ](https://tachibanayu24.github.io/EasyGantt.js/example.html){:target="_blank"}
 
 ## How To Use
 
-1. easugantt.jsの編集
+1. easygantt.jsの編集
 
 `easygantt/easugantt.js`に、次の値を入力してください。
 
@@ -37,6 +35,9 @@ let startDay = {
 let openingTime = 900;
 let closingTime = 1730;
 ```
+
+入力した値に応じて、日付や時間軸の部分が変わります。
+時間時期軸は。30分単位で分割して表示します。
 
 次に、`easygantt/tasks.js`の配列に、予定するタスクを記入してください。
 
@@ -136,3 +137,7 @@ $ git clone https://github.com/tachibanayu24/EasyGantt.js.git
 
 <div id="easygantt"></div>
 ```
+
+###### reference material
+
+EasyGantt.jsのCSSは、[Timesheet.js](https://sbstjn.com/timesheet.js/)

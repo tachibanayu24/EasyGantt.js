@@ -9,6 +9,25 @@ let startDay = {
 let openingTime = 900;
 let closingTime = 1730;
 
+
+// tasks.jsに配列が存在する日の回数分、チャートを表示するdaily-area要素を描画する
+const dailyAreaDOM = () => {
+  for(let i=0; i < Object.keys(task).length; i++) {
+    let contentObj = document.getElementById("easygantt");
+    let chartElement = document.createElement('div');
+    chartElement.className = 'chart';
+    contentObj.appendChild(chartElement);
+    let chartArea = document.querySelectorAll(".chart");
+      chartArea[i].innerHTML = `
+      <span id="date${i}"></span>
+      <div class="daily-area">
+        <div class="scale"></div>
+        <ul class="data" id="task${i}"></ul>
+      </div>
+      `;
+  }
+}
+
 // 始業時間と就業時間から、30分区切りでhh:mmというフォーマットに変換する
 const setTimeScale = (open, close) => {
   openMin = convertTimesToMins(open);
@@ -86,29 +105,14 @@ const bubbleData = (i, j) => {
             </span>
             <span class="bubble-span">${task[i][j].name}</span>`;
   } else {
-    data = `<span class="time milestone-span">
-              ${String(task[i][j].startTime).slice(0, -2)}:${String(task[i][j].startTime).slice(-2)}<br>${task[i][j].name}
-            </span>`;
+    data = `<span class="time">${String(task[i][j].startTime).slice(0, -2)}:${String(task[i][j].startTime).slice(-2)}</span>
+            <span class="milestone-span">${task[i][j].name}</span>`;
   }
   return data
 }
 
 window.onload = () => {
-  for(let i=0; i < Object.keys(task).length; i++) {
-    let contentObj = document.getElementById("easygantt");
-    let chartElement = document.createElement('div');
-    chartElement.className = 'chart';
-    contentObj.appendChild(chartElement);
-    let chartArea = document.querySelectorAll(".chart");
-      chartArea[i].innerHTML = `
-      <span id="date${i}"></span>
-      <div class="daily-area">
-        <div class="scale"></div>
-        <ul class="data" id="task${i}"></ul>
-      </div>
-      `;
-  }
-
+  dailyAreaDOM();
   let startTimeToMins = [], endTimeToMins = [], durationTimes = [];
   for(let i=0; i < Object.keys(task).length; i++) {
     if(task[i][0]) {
