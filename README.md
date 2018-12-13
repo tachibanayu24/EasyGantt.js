@@ -138,6 +138,6 @@ $ git clone https://github.com/tachibanayu24/EasyGantt.js.git
 <div id="easygantt"></div>
 ```
 
-###### reference material
+##### reference material
 
-EasyGantt.jsのCSSは、[Timesheet.js](https://sbstjn.com/timesheet.js/)
+EasyGantt.jsのCSSは、[Timesheet.js](https://sbstjn.com/timesheet.js/)を参考にしています。
