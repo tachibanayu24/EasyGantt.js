@@ -40,7 +40,7 @@ let closingTime = 1730;
 ```
 
 入力した値に応じて、日付や時間軸の部分が変わります。
-時間時期軸は。30分単位で分割して表示します。
+時間軸は。30分単位で分割して表示します。
 
 次に、`easygantt/tasks.js`の配列に、予定するタスクを記入してください。
 
@@ -141,6 +141,6 @@ $ git clone https://github.com/tachibanayu24/EasyGantt.js.git
 <div id="easygantt"></div>
 ```
 
-##### reference material
+# reference material
 
 EasyGantt.jsのCSSは、[Timesheet.js](https://sbstjn.com/timesheet.js/)を参考にしています。
