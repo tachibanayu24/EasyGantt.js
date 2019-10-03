@@ -1,19 +1,19 @@
 ## What's EasyGantt.js
 
 カラフルなバブルで近日中の予定やマイルストンを可視化できるツールです。
-
+
 簡単なコピペですぐに導入できます。
 
-サーバを必要としないためブラウザのみで動作し、bootstrapやjQueryといったライブラリと依存関係がありません。インターネットのない環境でも動作します。
+サーバを必要としないためブラウザのみで動作し、bootstrapやjQueryといったライブラリと依存関係がありません。インターネットのない環境でも動作します。
 
 分単位での予定の可視化にフォーカスしているため、短いスパンでの予定管理に向いています。
 
 依存関係を表示する機能などはなく、予定のみシンプルに可視化します。
 
-コードは[こちら](https://github.com/tachibanayu24/EasyGantt.js){:target="_blank"}。
+コードは[こちら](https://github.com/tachibanayu24/EasyGantt.js)
 
 ![画面](readme/example.png "gamen")
-[demoページ](https://tachibanayu24.github.io/EasyGantt.js/example.html){:target="_blank"}
+[demoページ](https://tachibanayu24.github.io/EasyGantt.js/example.html)
 
 ## How To Use
 
@@ -22,7 +22,7 @@
 `easygantt/easugantt.js`に、次の値を入力してください。
 
 * 何日から開始するか
-* 何時から何時までを表示するか
+* 何時から何時までを表示するか
 
 サンプル画像のようにする場合は、次の通りになります。
 ```javascript
@@ -34,7 +34,7 @@ let startDay = {
 }
 
 // 始業時間と就業時間を入力してください(30分単位で入力してください)
-// 以下は、9:00から17:30を表示する場合
+// 以下は、9:00から17:30を表示する場合
 let openingTime = 900;
 let closingTime = 1730;
 ```
@@ -42,7 +42,7 @@ let closingTime = 1730;
 入力した値に応じて、日付や時間軸の部分が変わります。
 時間軸は。30分単位で分割して表示します。
 
-次に、`easygantt/tasks.js`の配列に、予定するタスクを記入してください。
+次に、`easygantt/tasks.js`の配列に、予定するタスクを記入してください。
 
 何もタスクがない日は、空の配列としてください。
 
@@ -66,14 +66,14 @@ let task = [
   },
   // 1日目のタスクその3
   {
-    name: "アプリ開発",
+    name: "アプリ開発",
     startTime: 1400,
     endTime: 1730,
     category: "dev"
   },
   // 1日目のタスクその4
   {
-    name: "クラウド研修応募締切",
+    name: "クラウド研修応募締切",
     startTime: 1500,
     endTime: 1500,
     category: "milestone"
@@ -87,14 +87,14 @@ let task = [
   },
   // 1日目のタスクその6 時系列順である必要はありません
   {
-    name: "ビジュアルコミュニケーションセミナー",
+    name: "ビジュアルコミュニケーションセミナー",
     startTime: 1100,
     endTime: 1200,
     category: "lecture"
   },
   // 1日目のタスクその7
   {
-    name: "部のランチ会",
+    name: "部のランチ会",
     startTime: 1200,
     endTime: 1300,
     category: "other"
@@ -104,7 +104,7 @@ let task = [
 [],
 ```
 
-`category`は次の7種類が用意されており、バブルの色と対応します。
+`category`は次の7種類が用意されており、バブルの色と対応します。
 
 ![dev](https://placehold.it/15/2b8fef/000000?text=+) `dev 開発関係業務`
 
@@ -141,6 +141,6 @@ $ git clone https://github.com/tachibanayu24/EasyGantt.js.git
 <div id="easygantt"></div>
 ```
 
-# Reference Material
+# LICENSE
 
-EasyGantt.jsのCSSは、[Timesheet.js](https://sbstjn.com/timesheet.js/)を参考にしています。
+MIT
